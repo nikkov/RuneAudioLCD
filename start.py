@@ -4,7 +4,7 @@
 # Schematic, details and tutorial: /                     #
 ##########################################################
 
-import i2c_display, mpd_client, ir_remote, time, buttons
+import i2c_display, parallel_display, mpd_client, ir_remote, time, buttons
 
 #########  MPD PARAMETERS  ##############
 # Only if you know what you're doing!
@@ -26,7 +26,7 @@ LCD_ENABLE = True
 
 # This program supports I2C and parallel connection for display
 # Choose between I2C and parallel: 0 - for I2C, 1 - for parallel
-DISPLAY_TYPE = 0
+DISPLAY_TYPE = 1
 
 # Specify I2C display address (usually 0x27)
 I2C_DISPLAY_ADDRESS = 0X27
@@ -34,8 +34,8 @@ I2C_DISPLAY_ADDRESS = 0X27
 # This program generates LCD output dynamically
 # Which means that it support both 20x4 and 16x2 LCDs
 # Specify LCD size (for example 20x4 or 16x2 LCD
-LCD_COLUMNS = 20
-LCD_ROWS = 4
+LCD_COLUMNS = 16
+LCD_ROWS = 2
 
 # Specify scrolling period (for artist and title) in SECONDS
 # WARNING: By decreasing scrolling_period, CPU usage increases fast
@@ -72,12 +72,12 @@ BUTTONS_ENABLE = True
 # Change the pin number, to specify where you connected them
 # If you don't want to use one of the buttons, put False as values
 # For example, PLAY_BUTTON = False
-PLAY_BUTTON = 8
-NEXT_BUTTON = 10
-PREV_BUTTON = 11
-VDN_BUTTON = 12
-VUP_BUTTON = 13
-STOP_BUTTON = 15
+PLAY_BUTTON = 3
+NEXT_BUTTON = 4
+PREV_BUTTON = 5
+VDN_BUTTON = False
+VUP_BUTTON = False
+STOP_BUTTON = 6
 
 # Specify time to ignore button after press (in miliseconds)
 BOUNCE_TIME = 200
@@ -115,6 +115,8 @@ if LCD_ENABLE:
 	# I2C display is chosen
 	if (DISPLAY_TYPE == 0):
 		display = i2c_display.i2c_display(I2C_DISPLAY_ADDRESS, LCD_ROWS, LCD_COLUMNS, TEMPORARY_SCREEN_PERIOD, SCROLLING_PERIOD)
+	elif(DISPLAY_TYPE == 1)
+		display = parallel_display.parallel_display(I2C_DISPLAY_ADDRESS, LCD_ROWS, LCD_COLUMNS, TEMPORARY_SCREEN_PERIOD, SCROLLING_PERIOD)
 	
 	# Let MPD and display know for each other
 	display.register(mpdcl)

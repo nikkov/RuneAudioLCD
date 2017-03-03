@@ -53,7 +53,6 @@ LCD_5x10DOTS = 0x04
 LCD_5x8DOTS = 0x00
 
 # Define LCD device constants
-LCD_WIDTH = 20    # Default characters per line # TODO
 LCD_CHR = True
 LCD_CMD = False
 

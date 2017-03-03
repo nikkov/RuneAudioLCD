@@ -13,7 +13,7 @@ class buttons():
 		self.buttons = button_pins
 	
 		# Set GPIO numbering mode
-		GPIO.setmode(GPIO.BOARD)
+		GPIO.setmode(GPIO.BCM)
 		
 		# We don't need warnings from GPIO
 		GPIO.setwarnings(False)
