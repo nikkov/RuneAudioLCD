@@ -115,7 +115,7 @@ if LCD_ENABLE:
 	# I2C display is chosen
 	if (DISPLAY_TYPE == 0):
 		display = i2c_display.i2c_display(I2C_DISPLAY_ADDRESS, LCD_ROWS, LCD_COLUMNS, TEMPORARY_SCREEN_PERIOD, SCROLLING_PERIOD)
-	elif(DISPLAY_TYPE == 1)
+	elif(DISPLAY_TYPE == 1):
 		display = parallel_display.parallel_display(I2C_DISPLAY_ADDRESS, LCD_ROWS, LCD_COLUMNS, TEMPORARY_SCREEN_PERIOD, SCROLLING_PERIOD)
 	
 	# Let MPD and display know for each other
