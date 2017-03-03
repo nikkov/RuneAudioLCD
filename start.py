@@ -39,7 +39,7 @@ LCD_ROWS = 2
 
 # Specify scrolling period (for artist and title) in SECONDS
 # WARNING: By decreasing scrolling_period, CPU usage increases fast
-SCROLLING_PERIOD = 0.1
+SCROLLING_PERIOD = 0.5
 
 # When the song changes, how much time will pass before scrolling starts, in SECONDS
 SCROLLING_START = 1
@@ -67,7 +67,7 @@ BACKLIGHT_TIMEOUT = 5
 # BUTTONS ARE PULLED UP, so connect buttons to GROUND 									#
 
 # If you want to use buttons, put to True, otherwise put to False
-BUTTONS_ENABLE = True
+BUTTONS_ENABLE = False
 
 # Change the pin number, to specify where you connected them
 # If you don't want to use one of the buttons, put False as values

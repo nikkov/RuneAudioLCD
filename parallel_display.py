@@ -1,5 +1,6 @@
 # WARNING: For all overrided methods see display.py for documentation
 
+import display
 import RPi.GPIO as GPIO
 import time
 
@@ -64,8 +65,8 @@ LCD_BACKLIGHT = 0x08
 LCD_NOBACKLIGHT = 0x00
 
 # Timing constants
-E_PULSE = 0.0005
-E_DELAY = 0.0005
+E_PULSE = 0.00005
+E_DELAY = 0.00005
 
 class parallel_display(display.display):
 	# Method for LCD initialization
@@ -80,6 +81,7 @@ class parallel_display(display.display):
 		GPIO.setup(LCD_D5, GPIO.OUT) # DB5
 		GPIO.setup(LCD_D6, GPIO.OUT) # DB6
 		GPIO.setup(LCD_D7, GPIO.OUT) # DB7
+
 		
 		self.lcd_byte(0x33, LCD_CMD) # 110011 Initialise
 		self.lcd_byte(0x32, LCD_CMD) # 110010 Initialise
