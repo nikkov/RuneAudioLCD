@@ -34,19 +34,12 @@ class buttons():
 	def button_pressed(self, channel):
 		# Debouncing
 		time.sleep(0.05)
-		button = False
 		# Find out which button was pressed
-		if (self.buttons['NEXT_BUTTON'] != False and (GPIO.input(self.buttons['NEXT_BUTTON']) == 0)):
-			button = 'NEXT'
-		elif ((self.buttons['PREV_BUTTON'] != False) and (GPIO.input(self.buttons['PREV_BUTTON']) == 0)):
-			button = 'PREV'
-		elif ((self.buttons['VDN_BUTTON'] != False) and (GPIO.input(self.buttons['VDN_BUTTON']) == 0)):
-			button = 'VDN'
-		elif ((self.buttons['VUP_BUTTON'] != False) and (GPIO.input(self.buttons['VUP_BUTTON']) == 0)):
-			button = 'VUP'
-		elif ((self.buttons['PLAY_BUTTON'] != False) and (GPIO.input(self.buttons['PLAY_BUTTON']) == 0)):
-			button = 'PLAY'
-		elif ((self.buttons['STOP_BUTTON'] != False) and (GPIO.input(self.buttons['STOP_BUTTON']) == 0)):
-			button = 'STOP'
-		if(button != False):
-			self.mpd.commands(button)
+		for button in self.buttons:
+			#print "%s\n" %(button)
+			if ((self.buttons[button] != False) and (GPIO.input(self.buttons[button]) == 0)):
+			# Send command to MPD client
+				#print "pressed %s\n" %(button)
+				if (self.mpd != False):
+					self.mpd.commands(button.replace('_BUTTON', ''))
+				break

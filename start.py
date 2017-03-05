@@ -72,12 +72,12 @@ BUTTONS_ENABLE = True
 # Change the pin number, to specify where you connected them
 # If you don't want to use one of the buttons, put False as values
 # For example, PLAY_BUTTON = False
-NEXT_BUTTON = 17
-PREV_BUTTON = 19
 PLAY_BUTTON = 18
-STOP_BUTTON = 16
-VDN_BUTTON = False
 VUP_BUTTON = False
+NEXT_BUTTON = 17
+STOP_BUTTON = 19
+PREV_BUTTON = 16
+VDN_BUTTON = False
 
 # Specify time to ignore button after press (in miliseconds)
 BOUNCE_TIME = 200
