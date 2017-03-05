@@ -13,7 +13,7 @@ class buttons():
 		self.buttons = button_pins
 	
 		# Set GPIO numbering mode
-		GPIO.setmode(GPIO.BCM)
+		GPIO.setmode(GPIO.BOARD)
 		
 		# We don't need warnings from GPIO
 		GPIO.setwarnings(False)
@@ -34,10 +34,19 @@ class buttons():
 	def button_pressed(self, channel):
 		# Debouncing
 		time.sleep(0.05)
-		if (GPIO.input(channel) == 0):
-			# Find out which button was pressed
-			for button in self.buttons:
-				if (channel == self.buttons[button]):					
-					# Send command to MPD client
-					if (self.mpd != False):
-						self.mpd.commands(button.replace('_BUTTON', ''))
+		button = False
+		# Find out which button was pressed
+		if (self.buttons['NEXT_BUTTON'] != False and (GPIO.input(self.buttons['NEXT_BUTTON']) == 0)):
+			button = 'NEXT'
+		elif ((self.buttons['PREV_BUTTON'] != False) and (GPIO.input(self.buttons['PREV_BUTTON']) == 0)):
+			button = 'PREV'
+		elif ((self.buttons['VDN_BUTTON'] != False) and (GPIO.input(self.buttons['VDN_BUTTON']) == 0)):
+			button = 'VDN'
+		elif ((self.buttons['VUP_BUTTON'] != False) and (GPIO.input(self.buttons['VUP_BUTTON']) == 0)):
+			button = 'VUP'
+		elif ((self.buttons['PLAY_BUTTON'] != False) and (GPIO.input(self.buttons['PLAY_BUTTON']) == 0)):
+			button = 'PLAY'
+		elif ((self.buttons['STOP_BUTTON'] != False) and (GPIO.input(self.buttons['STOP_BUTTON']) == 0)):
+			button = 'STOP'
+		if(button != False):
+			self.mpd.commands(button)

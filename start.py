@@ -67,17 +67,17 @@ BACKLIGHT_TIMEOUT = 5
 # BUTTONS ARE PULLED UP, so connect buttons to GROUND 									#
 
 # If you want to use buttons, put to True, otherwise put to False
-BUTTONS_ENABLE = False
+BUTTONS_ENABLE = True
 
 # Change the pin number, to specify where you connected them
 # If you don't want to use one of the buttons, put False as values
 # For example, PLAY_BUTTON = False
-PLAY_BUTTON = 3
-NEXT_BUTTON = 4
-PREV_BUTTON = 5
+NEXT_BUTTON = 17
+PREV_BUTTON = 19
+PLAY_BUTTON = 18
+STOP_BUTTON = 16
 VDN_BUTTON = False
 VUP_BUTTON = False
-STOP_BUTTON = 6
 
 # Specify time to ignore button after press (in miliseconds)
 BOUNCE_TIME = 200
@@ -110,6 +110,7 @@ mpdcl = mpd_client.mpd_client(CON_ID, PASSWORD)
 # Start it
 mpdcl.start()
 
+
 # If enabled, nitialize display instance
 if LCD_ENABLE:
 	# I2C display is chosen
@@ -134,6 +135,7 @@ if REMOTE_ENABLE:
 	if LCD_ENABLE:
 		remote.register_display(display)
 
+
 # If buttons are enabled, initialize them
 if BUTTONS_ENABLE:
 	button_pins = {
@@ -146,7 +148,7 @@ if BUTTONS_ENABLE:
 	}
 
 	btn = buttons.buttons(button_pins, BOUNCE_TIME)
-	
+
 	# Register MPD client
 	btn.register(mpdcl)
 
@@ -156,11 +158,11 @@ mpdcl.join()
 # If LCD is enabled, wait for it's thread to finish
 if LCD_ENABLE:
 	display.join()
-	
+
 # If remote is enabled, wait for it's thread to finish
 if REMOTE_ENABLE:
 	remote.join()
-	
+
 # If buttons are enabled, wait for it's thread to finish
 if BUTTONS_ENABLE:
 	btn.join()
